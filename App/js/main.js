@@ -1,12 +1,12 @@
 ymaps.ready(init);
 
 function addCode(Distance) {
-
+    var price=400+(Distance*30)/1000;
     Distance = Distance / 1000;
     document.getElementById("add_to_me").innerHTML +=
         "<h3>Длина маршрута: "+Distance.toFixed(1)+" км</h3>";
 
-    var price=400+Distance*30;
+
     document.getElementById("add_to_me").innerHTML +=
         "<h3>Стоимость доставки: "+price.toFixed(1)+" руб.</h3>";
 
@@ -14,15 +14,12 @@ function addCode(Distance) {
 
 function init() {
     var myMap = new ymaps.Map("map", {
-            center: [55.73, 37.75],
+            center: [59.939095, 30.315868],
             zoom: 9
         }, {
             searchControlProvider: 'yandex#search'
         }),
         moscowPolygon;
-
-    document.getElementsByClassName("otchet").innerHTML +=
-        "<h3>This is the text which has been inserted by JS</h3>";
 
     function onPolygonLoad (json) {
         moscowPolygon = new ymaps.Polygon(json.coordinates);
@@ -34,7 +31,7 @@ function init() {
 
         console.log('Poligon created');
 
-        ymaps.route(['Москва', 'Зеленоград']).then(
+        ymaps.route([[59.939095, 30.315868], [60.021317, 30.654084]]).then(
             function (res) {
                 // Объединим в выборку все сегменты маршрута.
                 var pathsObjects = ymaps.geoQuery(res.getPaths()),
