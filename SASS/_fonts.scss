@@ -1,0 +1,11 @@
+@import "bourbon";
+
+@include font-face("UbuntuLight", "../fonts/Ubuntu/Ubuntu-Light", $file-formats: eot woff ttf);
+@include font-face("UbuntuRegular", "../fonts/Ubuntu/Ubuntu-Regular", $file-formats: eot woff ttf);
+@include font-face("UbuntuMedium", "../fonts/Ubuntu/Ubuntu-Medium", $file-formats: eot woff ttf);
+@include font-face("UbuntuBold", "../fonts/Ubuntu/Ubuntu-Bold", $file-formats: eot woff ttf);
+
+@include font-face("OswaldLight", "../fonts/Oswald/Oswald-Light", $file-formats: eot woff ttf);
+@include font-face("OswaldRegular", "../fonts/Oswald/Oswald-Regular", $file-formats: eot woff ttf);
+@include font-face("OswaldMedium", "../fonts/Oswald/Oswald-Medium", $file-formats: eot woff ttf);
+@include font-face("OswaldBold", "../fonts/Oswald/Oswald-Bold", $file-formats: eot woff ttf);

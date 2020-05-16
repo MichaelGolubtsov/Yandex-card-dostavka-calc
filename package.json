@@ -1,0 +1,22 @@
+{
+  "name": "BP",
+  "version": "1.0.0",
+  "description": "Blank Project",
+  "devDependencies": {
+    "browser-sync": "latest",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "latest",
+    "gulp-clean-css": "latest",
+    "gulp-concat": "latest",
+    "gulp-rename": "latest",
+    "gulp-sass": "latest",
+    "gulp-uglify": "latest",
+    "node-bourbon": "latest"
+  },
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "M. Golubtsov",
+  "license": "ISC"
+}

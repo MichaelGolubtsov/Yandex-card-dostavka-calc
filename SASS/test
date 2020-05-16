@@ -1,0 +1,163 @@
+//#navbar {
+//  margin: 0;
+//  padding: 0;
+//  list-style-type: none;
+//}
+//
+//#navbar li {
+//  display: inline;
+//}
+//
+//#navbar {
+//  margin: 0;
+//  padding: 0;
+//  list-style-type: none;
+//  border: 2px solid #0066FF;
+//  border-radius: 20px 5px;
+//  // width: 550px;
+//  text-align: center;
+//  background-color: #33ADFF;
+//}
+//
+//#navbar a {
+//  color: #fff;
+//  padding: 5px 10px;
+//  text-decoration: none;
+//  font-weight: bold;
+//  display: inline-block;
+//  width: 130px;
+//}
+//
+//#navbar a:hover {
+//  border-radius: 20px 5px;
+//  background-color: #0066FF;
+//}
+//
+//body {
+//  font-size: 14px;
+//  min-width: 320px;
+//  position: relative;
+//  line-height: 1.1;
+//  font-family: "OpenSansRegular", sans-serif;
+//  overflow-x: hidden;
+//  color: #4EB1BA;
+//  background-color: #222930;
+//}
+//
+//h1, h2, h3, h4, h5, h6 {
+//  font-family: "OpenSansLight", sans-serif;
+//  font-weight: normal;
+//}
+//
+//h1 {
+//  margin-bottom: 40px;
+//  text-align: center;
+//  text-transform: uppercase;
+//  font-family: OswaldMedium, monospace;
+//  font-size: 1.6875em;
+//  color: blue; //#323e4c;
+//}
+//
+//h2 {
+//  text-align: center;
+//  font-size: em(32);
+//  color: blue; //#323e4c;
+//}
+//
+//.accord {
+//  text-align: center;
+//  padding-left: 60px;
+//  width: 100%;
+//}
+//
+//.main-head {
+//  p {
+//    color: #4EB1BA;
+//    font-size: 1.0em;
+//  }
+//}
+//
+//.btObrZvonok {
+//  margin-left: 34px;
+//  margin-top: 14px;
+//}
+//
+//.main {
+//  p {
+//    font-family: "UbuntuLight", monospace;
+//    font-size: em(22);
+//    color: #4EB1BA;
+//    text-align: justify;
+//    margin-bottom: 1.0em;
+//  }
+//
+//}
+//
+//.text {
+//  padding-top: 31px;
+//  padding-bottom: 60px;
+//
+//  p {
+//    font-family: "UbuntuLight", monospace;
+//    font-size: em(22);
+//    color: #4EB1BA;
+//    text-align: justify;
+//    text-indent: 2em;
+//    margin-bottom: 1.0em;
+//  }
+//}
+//
+//.preimush {
+//  padding-top: 31px;
+//  padding-bottom: 60px;
+//
+//  p {
+//    font-family: "UbuntuLight", monospace;
+//    font-size: em(22);
+//    color: white;
+//    text-align: justify;
+//    text-indent: 2em;
+//    margin-bottom: 1.0em;
+//  }
+//}
+//
+//.akcii-text {
+//  p {
+//    font-family: "UbuntuLight", monospace;
+//    font-size: em(26);
+//    color: red;
+//    text-align: center;
+//    margin-bottom: 1.0em;
+//
+//    border: 4px double yellow;
+//    //  background: #fc3;
+//    padding: 10px;
+//  }
+//}
+//
+//.slajder {
+//  margin-bottom: 1.0em;
+//  p {
+//    font-family: "UbuntuLight", monospace;
+//    font-size: em(26);
+//    color: green;
+//    text-align: center;
+//    margin-bottom: 1.0em;
+//    border: 0;
+//  }
+//}
+//
+//.map {
+//  width: auto;
+//  text-align: center;
+//  margin-top: 2.0em;
+//  margin-bottom: 1.0em;
+//}
+//
+//.footer-bottom {
+//  a, p {
+//    margin-top: 2.0em;
+//    color: yellow;
+//    font-size: 1.0em;
+//  }
+}

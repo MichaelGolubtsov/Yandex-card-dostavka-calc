@@ -1,0 +1,181 @@
+//Colors
+$red: rgb(225,24,58);
+$red1: rgb(178,17,44); //стрелки на кнопках
+$white: rgb(255,255,255);
+$white1: rgb(254,254,254);
+$gred: rgb(220,0,37);
+$gred1: rgb(225,24,114);
+$txtbl: rgb(50,62,76);
+$calctxt: rgb(102,117,133);
+$calcbrd: rgb(91,106,121);
+$gmap: rgb(67,232,87);
+$gmap1: rgb(193,245,52);
+$bg: rgb(53,66,80);
+$copy: rgb(126,145,167);
+$fmnubrd: rgb(175,185,197);
+$mnutxt: rgb(214,214,214);
+$placecolor: rgb(226,232,240);
+$date: rgb(130,142,157);
+$testim: rgb(101,114,128);
+
+//Shadow
+$shadows-small:  multiple-box-shadow(700);
+$shadows-medium: multiple-box-shadow(200);
+$shadows-big:    multiple-box-shadow(100);
+
+//Mixins ease transition
+@mixin mt($time) {
+  transition: all $time ease;
+}
+
+// Cross-browser mixins transition cubic-bezier
+@mixin bezier-transition($transition-property, $transition-time, $method) {
+  -webkit-transition: $transition-property $transition-time $method;
+  -moz-transition: $transition-property $transition-time $method;
+  -ms-transition: $transition-property $transition-time $method;
+  -o-transition: $transition-property $transition-time $method;
+  transition: $transition-property $transition-time $method;
+}
+
+// Cross-browser mixins border-radius
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin box-shadow($params) {
+  -webkit-box-shadow: $params;
+  -moz-box-shadow: $params;
+  box-shadow: $params;
+}
+
+// WebKit font-smoothing
+// Values: none, antialiased (default), subpixel-antialiased
+@mixin font-smoothing($value: on) {
+  @if $value == on {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  @else {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
+}
+
+// Cross-browser mixins rotate
+@mixin rotate($rotate) {
+  -ms-transform: rotate($rotate);
+  /* IE 9 */
+  -webkit-transform: rotate($rotate);
+  /* Chrome, Safari, Opera */
+  -moz-transform: rotate($rotate);
+  transform: rotate($rotate);
+}
+
+
+// General Media Queries
+//large descktop
+$large-desktop-width: 1920px;
+@mixin large-desktop {
+  @media only screen and (max-width: $large-desktop-width) {
+    @content;
+  }
+}
+
+//medium descktop
+$desktop-width: 1600px;
+@mixin desktop {
+  @media only screen and (max-width: $desktop-width) {
+    @content;
+  }
+}
+
+//notebook and small descktop
+$notebook-width: 1200px;
+@mixin notebook {
+  @media only screen and (max-width: $notebook-width) {
+    @content;
+  }
+}
+
+//medium width
+$medium-width: 1024px;
+@mixin medium {
+  @media only screen and (max-width: $medium-width) {
+    @content;
+  }
+}
+
+//small descktop
+$small-descktop: 992px;
+@mixin small-descktop {
+  @media only screen and (max-width: $small-descktop) {
+    @content;
+  }
+}
+
+//tablet width
+$tablet-width: 768px;
+@mixin tablet {
+  @media only screen and (max-width: $tablet-width) {
+    @content;
+  }
+}
+$special-tablet: 1024px;
+@mixin landscape-tablet {
+  @media only screen and (max-device-width: $special-tablet) and (orientation: landscape) {
+    @content;
+  }
+}
+
+//phone width
+$phone-width: 480px;
+@mixin phone {
+  @media only screen and (max-width: $phone-width) {
+    @content;
+  }
+}
+
+//iphone6 plus
+$iphone6-plus-width: 414px;
+@mixin iphone6-plus {
+  @media only screen and (max-width: $iphone6-plus-width) {
+    @content;
+  }
+}
+$special-iphone6-plus: 736px;
+@mixin landscape-iphone6-plus {
+  @media screen and (max-device-width: $special-iphone6-plus) and (orientation: landscape) {
+    @content;
+  }
+}
+
+//iphone6
+$iphone6-width: 375px;
+@mixin iphone6 {
+  @media only screen and (max-width: $iphone6-width) {
+    @content;
+  }
+}
+$special-iphone6: 667px;
+@mixin landscape-iphone6 {
+  @media screen and (max-device-width: $special-iphone6) and (orientation: landscape) {
+    @content;
+  }
+}
+
+//iphone5
+$iphone5-width: 320px;
+@mixin iphone5 {
+  @media only screen and (max-width: $iphone5-width) {
+    @content;
+  }
+}
+$special-iphone5: 568px;
+@mixin landscape-iphone5 {
+  @media screen and (max-device-width: $special-iphone5) and (orientation: landscape) {
+    @content;
+  }
+}
