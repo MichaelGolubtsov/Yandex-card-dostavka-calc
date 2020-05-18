@@ -1,5 +1,8 @@
 ymaps.ready(init);
 
+var EndPoint = "Тверь";
+
+
 function addCode(Distance) {
     var price=400+(Distance*30)/1000;
     Distance = Distance / 1000;
@@ -14,8 +17,9 @@ function addCode(Distance) {
 
 
 function GetDistance() {
+
     document.getElementById("add_to_me").innerHTML +=
-        "<h3>Нажата кнопка Получить расстояние</h3>";
+        "<h3>Нажата кнопка Получить расстояние</h3>"+EndPoint;
 }
 
 function init() {
@@ -26,6 +30,17 @@ function init() {
             searchControlProvider: 'yandex#search'
         }),
         moscowPolygon;
+
+    // Создание метки
+    var myPlacemark = new ymaps.Placemark(
+        // Координаты метки
+        [59.748564, 30.595648] , {
+            hintContent: 'Поставьте метку на точку доставки'
+        }, {
+            draggable: true // Метку можно перетаскивать, зажав левую кнопку мыши.
+        });
+    // Добавление метки на карту
+    myMap.geoObjects.add(myPlacemark);
 
     function onPolygonLoad (json) {
         moscowPolygon = new ymaps.Polygon(json.coordinates);
@@ -120,8 +135,6 @@ function init() {
                         if (segment.geometry.getDistance != undefined)
                             insideMKADDistance += segment.geometry.getDistance();
                     });
-
-                console.log('insideMKADDistance',insideMKADDistance);
 
                 console.log('MKADDistance',MKADDistance);
 
