@@ -12,6 +12,12 @@ function addCode(Distance) {
 
 }
 
+
+function GetDistance() {
+    document.getElementById("add_to_me").innerHTML +=
+        "<h3>Нажата кнопка Получить расстояние</h3>";
+}
+
 function init() {
     var myMap = new ymaps.Map("map", {
             center: [59.939095, 30.315868],
@@ -31,7 +37,13 @@ function init() {
 
         console.log('Poligon created');
 
+        myMap.controls.remove('geolocationControl');
+        myMap.controls.remove('trafficControl');
+        myMap.controls.remove('typeSelector');
+
+
         ymaps.route([[59.939095, 30.315868], [60.021317, 30.654084]]).then(
+//        ymaps.route([[59.939095, 30.315868], [60.021317, 30.654084]]).then(
             function (res) {
                 // Объединим в выборку все сегменты маршрута.
                 var pathsObjects = ymaps.geoQuery(res.getPaths()),
