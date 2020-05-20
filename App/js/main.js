@@ -59,6 +59,7 @@ function init() {
             'press',
             function () {
                 alert('Удалить маршрут');
+                document.getElementById("add_to_me").innerHTML = "";
             }
         )
 
