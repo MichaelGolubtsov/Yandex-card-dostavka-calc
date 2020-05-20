@@ -14,14 +14,6 @@ function addCode(Distance) {
 
 }
 
-
-function GetDistance() {
-    var EndPoint = "Тверь";
-
-    document.getElementById("add_to_me").innerHTML +=
-        "<h3>Нажата кнопка Получить расстояние</h3>"+EndPoint;
-}
-
 function init() {
     var myMap = new ymaps.Map("map",
         {               center: [59.939095, 30.315868],
@@ -37,7 +29,7 @@ function init() {
 // Создание метки
     var myPlacemark = new ymaps.Placemark(
         // Координаты метки
-        [59.748564, 30.595648] , {
+        TargetCoordinats , {
             hintContent: 'Поставьте метку на точку доставки'
         }, {
             draggable: true, // Метку можно перетаскивать, зажав левую кнопку мыши.
@@ -46,14 +38,31 @@ function init() {
     // Добавление метки на карту
     myMap.geoObjects.add(myPlacemark);
 
-    myPlacemark.events.add('click', function (e) {
+    myPlacemark.events.add('dragend', function (e) {
         var coordinates = e.get('target').geometry.getCoordinates();
         TargetCoordinats = coordinates;
-        RouteDistance();
 
         alert('Координаты метки: '+coordinates);
     });
 
+    var myButton =
+        new ymaps.control.Button(
+            '<b>Рассчитать</b>'
+        );
+
+    myButton.events
+        .add(
+            'press',
+            function () {
+                alert('Щелк');
+                RouteDistance();
+
+            }
+        )
+    myMap.controls.add(myButton, {
+        float: "left",
+        selectOnClick: false
+    });
 
     function RouteDistance(){
         ymaps.route([[59.939095, 30.315868], TargetCoordinats]).then(
@@ -162,4 +171,13 @@ function init() {
         dataType: 'json',
         success: onPolygonLoad
     });
+}
+
+function GetDistance() {
+    var EndPoint = "Тверь";
+
+    document.getElementById("add_to_me").innerHTML +=
+        "<h3>Нажата кнопка Получить расстояние</h3>"+EndPoint;
+
+
 }
