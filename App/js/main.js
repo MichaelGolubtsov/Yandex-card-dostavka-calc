@@ -1,6 +1,5 @@
 ymaps.ready(init);
 
-var EndPoint = "Тверь";
 
 
 function addCode(Distance) {
@@ -17,46 +16,41 @@ function addCode(Distance) {
 
 
 function GetDistance() {
+    var EndPoint = "Тверь";
 
     document.getElementById("add_to_me").innerHTML +=
         "<h3>Нажата кнопка Получить расстояние</h3>"+EndPoint;
 }
 
 function init() {
-    var myMap = new ymaps.Map("map", {
-            center: [59.939095, 30.315868],
+    var myMap = new ymaps.Map("map",
+        {               center: [59.939095, 30.315868],
             zoom: 9
-        }, {
+        }, 
+        {
             searchControlProvider: 'yandex#search'
-        }),
+        },
+        {suppressMapOpenBlock: true}
+        ),
         moscowPolygon;
 
-    // Создание метки
+// Создание метки
     var myPlacemark = new ymaps.Placemark(
         // Координаты метки
         [59.748564, 30.595648] , {
             hintContent: 'Поставьте метку на точку доставки'
         }, {
-            draggable: true // Метку можно перетаскивать, зажав левую кнопку мыши.
+            draggable: true, // Метку можно перетаскивать, зажав левую кнопку мыши.
+            preset: 'islands#blueDotIcon'
         });
     // Добавление метки на карту
     myMap.geoObjects.add(myPlacemark);
 
-    function onPolygonLoad (json) {
-        moscowPolygon = new ymaps.Polygon(json.coordinates);
-        // Если мы не хотим, чтобы контур был виден, зададим соответствующую опцию.
-        moscowPolygon.options.set({fillColor: "ffffff00",strokeWidth: 4 ,strokeColor: "ff0000aa" });
-        // Чтобы корректно осуществлялись геометрические операции
-        // над спроецированным многоугольником, его нужно добавить на карту.
-        myMap.geoObjects.add(moscowPolygon);
+    myPlacemark.events.add('click', function () {
+        alert('О, событие!');
+    });
 
-        console.log('Poligon created');
-
-        myMap.controls.remove('geolocationControl');
-        myMap.controls.remove('trafficControl');
-        myMap.controls.remove('typeSelector');
-
-
+    function RouteDistance(){
         ymaps.route([[59.939095, 30.315868], [60.021317, 30.654084]]).then(
 //        ymaps.route([[59.939095, 30.315868], [60.021317, 30.654084]]).then(
             function (res) {
@@ -143,6 +137,25 @@ function init() {
 
             }
         );
+    }
+
+    function onPolygonLoad (json) {
+        moscowPolygon = new ymaps.Polygon(json.coordinates);
+        // Если мы не хотим, чтобы контур был виден, зададим соответствующую опцию.
+        moscowPolygon.options.set({fillColor: "ffffff00",strokeWidth: 4 ,strokeColor: "ff0000aa" });
+        // Чтобы корректно осуществлялись геометрические операции
+        // над спроецированным многоугольником, его нужно добавить на карту.
+        myMap.geoObjects.add(moscowPolygon);
+
+        console.log('Poligon created');
+
+        myMap.controls.remove('geolocationControl');
+        myMap.controls.remove('trafficControl');
+        myMap.controls.remove('typeSelector');
+
+        RouteDistance();
+
+
     }
 
     $.ajax({
