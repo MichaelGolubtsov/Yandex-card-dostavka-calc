@@ -46,22 +46,13 @@ function init() {
         var coordinates = e.get('target').geometry.getCoordinates();
         TargetCoordinats = coordinates;
 
-        alert('Координаты метки: '+coordinates);
+        //alert('Координаты метки: '+coordinates);
     });
 
     var myButtonClear =
         new ymaps.control.Button(
             '<b>Удалить</b>'
         );
-
-    myButtonClear.events
-        .add(
-            'press',
-            function () {
-                alert('Удалить маршрут');
-                document.getElementById("add_to_me").innerHTML = "";
-            }
-        )
 
     myMap.controls.add(myButtonClear, {
         float: "left",
@@ -78,9 +69,8 @@ function init() {
         .add(
             'press',
             function () {
-                alert('Щелк');
-                RouteDistance();
-                addCode(Distance);
+               // alert('Щелк');
+                RouteDistance(1);
             }
         )
 
@@ -89,10 +79,10 @@ function init() {
         selectOnClick: false
     });
 
-    function RouteDistance(){
+    function RouteDistance(FlagTocreateOrDelete){
         ymaps.route([[59.939095, 30.315868], TargetCoordinats]).then(
-//        ymaps.route([[59.939095, 30.315868], [60.021317, 30.654084]]).then(
             function (res) {
+                
                 // Объединим в выборку все сегменты маршрута.
                 var pathsObjects = ymaps.geoQuery(res.getPaths()),
                     edges = [];
@@ -116,28 +106,30 @@ function init() {
                         .add(res.getWayPoints())
                         .add(res.getViaPoints())
                         .setOptions('strokeWidth', 3)
-                        .addToMap(myMap),
+                        .addToMap(myMap)
+
                     // Найдем все объекты, попадающие внутрь МКАД.
-                    objectsInMoscow = routeObjects.searchInside(moscowPolygon),
+                    objectsInMoscow = routeObjects.searchInside(moscowPolygon)
                     // Найдем объекты, пересекающие МКАД.
-                    boundaryObjects = routeObjects.searchIntersect(moscowPolygon);
+                    boundaryObjects = routeObjects.searchIntersect(moscowPolygon)
+
+             //   objectsInMoscow.removeFromMap(myMap)
 
                 // Раскрасим в разные цвета объекты внутри, снаружи и пересекающие МКАД.
                 boundaryObjects.setOptions({
-                    strokeColor: '#06ff00',
-                    //preset: 'islands#greenIcon'
+        //            strokeColor: '#06ff00',
 
                 });
 
                 objectsInMoscow.setOptions({
-                    strokeColor: '#ffffff',
+           //         strokeColor: '#ffffff',
                     visible: false
-                    //preset: 'islands#redIcon'
                 });
 
                 // Объекты за пределами МКАД получим исключением полученных выборок из
                 // исходной.
-                routeObjects.remove(objectsInMoscow).remove(boundaryObjects).setOptions({
+                routeOutside=routeObjects.remove(objectsInMoscow).remove(boundaryObjects);
+                routeOutside.setOptions({
                     strokeColor: '#0010ff',
                     preset: 'islands#blueDotIcon'
                 });
@@ -163,9 +155,19 @@ function init() {
                             insideMKADDistance += segment.geometry.getDistance();
                     });
 
-                console.log('MKADDistance',MKADDistance);
-
                 addCode(MKADDistance);
+
+                myButtonClear.events
+                    .add(
+                        'press',
+                        function () {
+                          //  alert('Удалить маршрут');
+                            document.getElementById("add_to_me").innerHTML = "";
+                            //myMap.geoObjects.remove(routeOutside);
+                            routeOutside.removeFromMap(myMap)
+
+                        }
+                    )
 
 
             }
@@ -179,8 +181,6 @@ function init() {
         // Чтобы корректно осуществлялись геометрические операции
         // над спроецированным многоугольником, его нужно добавить на карту.
         myMap.geoObjects.add(moscowPolygon);
-
-        console.log('Poligon created');
 
         myMap.controls.remove('geolocationControl');
         myMap.controls.remove('trafficControl');
