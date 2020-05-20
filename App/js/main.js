@@ -26,7 +26,7 @@ function init() {
     var myMap = new ymaps.Map("map",
         {               center: [59.939095, 30.315868],
             zoom: 9
-        }, 
+        },
         {
             searchControlProvider: 'yandex#search'
         },
@@ -46,8 +46,9 @@ function init() {
     // Добавление метки на карту
     myMap.geoObjects.add(myPlacemark);
 
-    myPlacemark.events.add('click', function () {
-        alert('О, событие!');
+    myPlacemark.events.add('click', function (e) {
+        var coordinates = e.get('target').geometry.getCoordinates();
+        alert('Координаты метки: '+coordinates);
     });
 
     function RouteDistance(){
