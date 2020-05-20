@@ -139,7 +139,7 @@ function init() {
                 // исходной.
                 routeObjects.remove(objectsInMoscow).remove(boundaryObjects).setOptions({
                     strokeColor: '#0010ff',
-                    preset: 'islands#blueIcon'
+                    preset: 'islands#blueDotIcon'
                 });
 
                 var MKADDistance = 0;
