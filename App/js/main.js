@@ -5,6 +5,10 @@ var TargetCoordinats = [60.021317, 30.654084];
 function addCode(Distance) {
     var price=400+(Distance*30)/1000;
     Distance = Distance / 1000;
+
+    document.getElementById("add_to_me").innerHTML +=
+        "<h2>Результаты расчета:</h2>";
+
     document.getElementById("add_to_me").innerHTML +=
         "<h3>Длина маршрута: "+Distance.toFixed(1)+" км</h3>";
 
@@ -45,9 +49,28 @@ function init() {
         alert('Координаты метки: '+coordinates);
     });
 
+    var myButtonClear =
+        new ymaps.control.Button(
+            '<b>Удалить</b>'
+        );
+
+    myButtonClear.events
+        .add(
+            'press',
+            function () {
+                alert('Удалить маршрут');
+            }
+        )
+
+    myMap.controls.add(myButtonClear, {
+        float: "left",
+        selectOnClick: false
+    });
+
+
     var myButton =
         new ymaps.control.Button(
-            '<b>Рассчитать</b>'
+             '<b>Рассчитать</b>'
         );
 
     myButton.events
@@ -56,9 +79,10 @@ function init() {
             function () {
                 alert('Щелк');
                 RouteDistance();
-
+                addCode(Distance);
             }
         )
+
     myMap.controls.add(myButton, {
         float: "left",
         selectOnClick: false
@@ -171,13 +195,4 @@ function init() {
         dataType: 'json',
         success: onPolygonLoad
     });
-}
-
-function GetDistance() {
-    var EndPoint = "Тверь";
-
-    document.getElementById("add_to_me").innerHTML +=
-        "<h3>Нажата кнопка Получить расстояние</h3>"+EndPoint;
-
-
 }
