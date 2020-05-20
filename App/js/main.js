@@ -1,6 +1,6 @@
 ymaps.ready(init);
 
-
+var TargetCoordinats = [60.021317, 30.654084];
 
 function addCode(Distance) {
     var price=400+(Distance*30)/1000;
@@ -48,22 +48,20 @@ function init() {
 
     myPlacemark.events.add('click', function (e) {
         var coordinates = e.get('target').geometry.getCoordinates();
+        TargetCoordinats = coordinates;
+        RouteDistance();
+
         alert('Координаты метки: '+coordinates);
     });
 
+
     function RouteDistance(){
-        ymaps.route([[59.939095, 30.315868], [60.021317, 30.654084]]).then(
+        ymaps.route([[59.939095, 30.315868], TargetCoordinats]).then(
 //        ymaps.route([[59.939095, 30.315868], [60.021317, 30.654084]]).then(
             function (res) {
                 // Объединим в выборку все сегменты маршрута.
                 var pathsObjects = ymaps.geoQuery(res.getPaths()),
                     edges = [];
-
-                var PathLength=0;
-
-
-                var PathLength=7.4;
-                console.log('Length',PathLength);
 
                 // Переберем все сегменты и разобьем их на отрезки.
                 pathsObjects.each(function (path) {
@@ -154,7 +152,7 @@ function init() {
         myMap.controls.remove('trafficControl');
         myMap.controls.remove('typeSelector');
 
-        RouteDistance();
+        //RouteDistance();
 
 
     }
